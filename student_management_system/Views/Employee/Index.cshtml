@@ -1,0 +1,56 @@
+﻿@model IEnumerable<student_management_system.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Employee Register   </h2>
+
+<p>
+    <a asp-action="AddOrEdit">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfficeLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                <p>
+                    <a class="btn btn-outline-success pt-2"asp-action="AddOrEdit"><i class="far fa-plus-square"></i>Create New</a>
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficeLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.EmployeeId"><i class="fa fa-marker fa-lg"></i></a> |
+                <a class="text-danger"asp-action="Delete" asp-route-id="@item.EmployeeId" onclick="return confirm('Are you sure to delete this item?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
